@@ -1,18 +1,33 @@
 import React from 'react';
 import { AppUI } from './AppUI';
 
-function App() {
-  const localStorageTasks = localStorage.getItem('TASKS_V1');
-  let parsedTasks;
+function useLocalStorage(itemName, initialValue){
+  const localStorageItem = localStorage.getItem(itemName);
+  let parsedItem;
   
-  if (!localStorageTasks) {
-    localStorage.setItem('TASKS_V1', JSON.stringify([]));
-    parsedTasks = [];
+  if (!localStorageItem) {
+    localStorage.setItem(itemName, JSON.stringify(initialValue));
+    parsedItem = initialValue;
   } else {
-    parsedTasks = JSON.parse(localStorageTasks);
+    parsedItem = JSON.parse(localStorageItem);
   }
-  
-  const [userTasks, setUserTasks] = React.useState(parsedTasks);
+
+  const [item, setItem] = React.useState(parsedItem);
+
+  const saveItem = (newItem) => {
+    localStorage.setItem(itemName, JSON.stringify(newItem));
+    setItem(newItem);
+  }
+
+  return[
+    item,
+    saveItem,
+  ];
+}
+
+
+function App() {
+  const [userTasks, saveTasks] = useLocalStorage('TASKS_V1', []);
   const [searchInput, setSearchInput] = React.useState('');
 
   const completedTasks = userTasks.filter((task) => task.completed).length;
@@ -28,11 +43,6 @@ function App() {
       const searchText = searchInput.toLowerCase();
       return taskText.includes(searchText);
     });
-  }
-
-  const saveTasks = (newTasks) => {
-    localStorage.setItem('TASKS_V1', JSON.stringify(newTasks));
-    setUserTasks(newTasks);
   }
 
   const toggleCompleteTask = (text) => {

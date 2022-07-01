@@ -1,14 +1,18 @@
 import React from 'react';
 import { AppUI } from './AppUI';
 
-const defaultTasks = [
-  { text: 'Cortar Cebolla', completed: false },
-  { text: 'Tomar el curso de Intro. a React', completed: false },
-  { text: 'Llorar con la llorona', completed: true },
-];
-
 function App() {
-  const [userTasks, setUserTasks] = React.useState(defaultTasks);
+  const localStorageTasks = localStorage.getItem('TASKS_V1');
+  let parsedTasks;
+  
+  if (!localStorageTasks) {
+    localStorage.setItem('TASKS_V1', JSON.stringify([]));
+    parsedTasks = [];
+  } else {
+    parsedTasks = JSON.parse(localStorageTasks);
+  }
+  
+  const [userTasks, setUserTasks] = React.useState(parsedTasks);
   const [searchInput, setSearchInput] = React.useState('');
 
   const completedTasks = userTasks.filter((task) => task.completed).length;
@@ -26,18 +30,23 @@ function App() {
     });
   }
 
+  const saveTasks = (newTasks) => {
+    localStorage.setItem('TASKS_V1', JSON.stringify(newTasks));
+    setUserTasks(newTasks);
+  }
+
   const toggleCompleteTask = (text) => {
     const taskIndex = userTasks.findIndex((task) => task.text === text);
     const newTasks = [...userTasks];
     newTasks[taskIndex].completed = !newTasks[taskIndex].completed;
-    setUserTasks(newTasks);
+    saveTasks(newTasks);
   };
 
   const deleteTask = (text) => {
     const taskIndex = userTasks.findIndex((task) => task.text === text);
     const newTasks = [...userTasks];
     newTasks.splice(taskIndex, 1);
-    setUserTasks(newTasks);
+    saveTasks(newTasks);
   };
 
   return (

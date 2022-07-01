@@ -3,3 +3,8 @@
   margin: 0 auto;
   box-sizing: border-box;
 }
+
+.info-text{
+  display: flex;
+  justify-content: center;
+}

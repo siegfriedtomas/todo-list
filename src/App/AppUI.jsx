@@ -4,8 +4,11 @@ import { TodoSearch } from '../Components/TodoSearch';
 import { TodoList } from '../Components/TodoList';
 import { TodoItem } from '../Components/TodoItem';
 import { CreateTodoButton } from '../Components/CreateTodoButton';
+import '../Styles/App/App.css';
 
 function AppUI({
+  loading,
+  error,
   totalTasks,
   completedTasks,
   searchInput,
@@ -19,6 +22,11 @@ function AppUI({
       <TodoCounter totalTasks={totalTasks} completedTasks={completedTasks} />
       <TodoSearch searchInput={searchInput} setSearchInput={setSearchInput} />
       <TodoList>
+        <div className='info-text'>
+          {error && <p>Hubo un error, intenta recargar la página...</p>}
+          {loading && <p>Cargando, espera por favor...</p>}
+          {(!loading && !searchedTasks.length) && <p>¡Crea tu primera tarea!</p>}
+        </div>
         {searchedTasks.map((task) => (
           <TodoItem
             key={task.text}

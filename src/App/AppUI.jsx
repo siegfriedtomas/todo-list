@@ -5,22 +5,21 @@ import { TodoList } from '../Components/TodoList';
 import { TodoItem } from '../Components/TodoItem';
 import { CreateTodoButton } from '../Components/CreateTodoButton';
 import '../Styles/App/App.css';
+import { TodoContext } from './TodoContext';
 
-function AppUI({
-  loading,
-  error,
-  totalTasks,
-  completedTasks,
-  searchInput,
-  setSearchInput,
-  searchedTasks,
-  toggleCompleteTask,
-  deleteTask,
-}) {
+function AppUI() {
+  const {
+    error,
+    loading,
+    searchedTasks,
+    toggleCompleteTask,
+    deleteTask
+  } = React.useContext(TodoContext)
+
   return (
     <div className="app-container">
-      <TodoCounter totalTasks={totalTasks} completedTasks={completedTasks} />
-      <TodoSearch searchInput={searchInput} setSearchInput={setSearchInput} />
+      <TodoCounter />
+      <TodoSearch />
       <TodoList>
         <div className='info-text'>
           {error && <p>Hubo un error, intenta recargar la página...</p>}

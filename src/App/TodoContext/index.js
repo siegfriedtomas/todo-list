@@ -11,6 +11,7 @@ function TodoProvider(props) {
     error,
   } = useLocalStorage('TASKS_V1', []);
   const [searchInput, setSearchInput] = React.useState('');
+  const [openModal, setOpenModal] = React.useState(false);
 
   const completedTasks = userTasks.filter((task) => task.completed).length;
   const totalTasks = userTasks.length;
@@ -53,6 +54,8 @@ function TodoProvider(props) {
         searchedTasks,
         toggleCompleteTask,
         deleteTask,
+        openModal,
+        setOpenModal,
       }}
     >
       {props.children}

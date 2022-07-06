@@ -3,10 +3,12 @@ import { TodoCounter } from '../Components/TodoCounter';
 import { TodoSearch } from '../Components/TodoSearch';
 import { TodoList } from '../Components/TodoList';
 import { TodoItem } from '../Components/TodoItem';
+import { TodoForm } from '../Components/TodoForm';
 import { CreateTodoButton } from '../Components/CreateTodoButton';
 import '../Styles/App/App.css';
 import { TodoContext } from './TodoContext';
 import { Modal } from '../Components/Modal';
+import { Loader } from '../Components/Loader';
 
 function AppUI() {
   const {
@@ -26,8 +28,8 @@ function AppUI() {
       <TodoList>
         <div className='info-text'>
           {error && <p>Hubo un error, intenta recargar la página...</p>}
-          {loading && <p>Cargando, espera por favor...</p>}
-          {(!loading && !searchedTasks.length) && <p>¡Crea tu primera tarea!</p>}
+          {loading && <Loader/>}
+          {(!loading && !searchedTasks.length) && <p>¡Vaya, parece que no hay ninguna tarea! ¿Por qué no creas una?</p>}
         </div>
         {searchedTasks.map((task) => (
           <TodoItem
@@ -42,7 +44,7 @@ function AppUI() {
 
       {openModal && (
         <Modal>
-          <p>Teletransportación!</p>
+          <TodoForm/>
         </Modal>
       )}
       <CreateTodoButton 

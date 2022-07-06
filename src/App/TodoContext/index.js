@@ -28,6 +28,15 @@ function TodoProvider(props) {
     });
   }
 
+  const addTask = (text) => {
+    const newTasks = [...userTasks];
+    newTasks.push({
+      completed: false,
+      text,
+    });
+    saveTasks(newTasks);
+  };
+
   const toggleCompleteTask = (text) => {
     const taskIndex = userTasks.findIndex((task) => task.text === text);
     const newTasks = [...userTasks];
@@ -56,6 +65,7 @@ function TodoProvider(props) {
         deleteTask,
         openModal,
         setOpenModal,
+        addTask,
       }}
     >
       {props.children}

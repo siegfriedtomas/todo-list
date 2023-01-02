@@ -9,6 +9,7 @@
   margin-top: 1.5rem;
   align-items: center;
   background-color: #fafafa;
+  border-radius: 0.8rem;
   justify-content: space-between;
   box-shadow: 0 5px 50px rgb(32 35 41 / 15%);
 }

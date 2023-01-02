@@ -5,8 +5,10 @@
     justify-content:center;
     align-items:center;
     margin-top:24px;
-    box-shadow:0 5px 50px rgba(32,35,41,.15)
+    box-shadow:0 5px 50px rgba(32,35,41,.15);
+    border-radius: 0.8rem;
 }
+
 .todo-item__text{
     margin:24px 0 24px 24px;
     width:calc(100% - 120px);
@@ -14,6 +16,7 @@
     line-height:24px;
     font-weight:400
 }
+
 .todo-item__text--completed{
     text-decoration:line-through
 }

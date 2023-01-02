@@ -10,8 +10,6 @@ function TodoForm() {
         setOpenModal,
     } = React.useContext(TodoContext)
 
-    
-
     const onCancel = () => {
         setOpenModal(false);
     };
@@ -32,22 +30,10 @@ function TodoForm() {
             <textarea 
                 value={newTaskValue}
                 onChange={onChange}
-                placeholder="Escribe tu tarea!"
             />
             <div className="modal-buttons-container">
-                <button
-                    className='modal-button'
-                    type="button"
-                    onClick={onCancel}
-                >
-                    Cancelar
-                </button>
-                <button
-                    className="modal-button"
-                    type="submit"
-                >
-                    Añadir
-                </button>
+                <button className="modal-button button-cancel" type="button" onClick={onCancel} >Cancel</button>
+                <button className="modal-button button-add" type="submit"> Add </button>
             </div>
         </form>
     )

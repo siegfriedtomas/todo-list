@@ -23,34 +23,37 @@ function AppUI() {
 
   return (
     <div className="app-container">
-      <TodoCounter />
-      <TodoSearch />
-      <TodoList>
-        <div className='info-text'>
-          {error && <p>Hubo un error, intenta recargar la página...</p>}
-          {loading && <Loader/>}
-          {(!loading && !searchedTasks.length) && <p>¡Vaya, parece que no hay ninguna tarea! ¿Por qué no creas una?</p>}
-        </div>
-        {searchedTasks.map((task) => (
-          <TodoItem
-            key={task.text}
-            text={task.text}
-            completed={task.completed}
-            onComplete={() => toggleCompleteTask(task.text)}
-            onDelete={() => deleteTask(task.text)}
-          />
-        ))}
-      </TodoList>
+      <div className='app-backdrop'></div>
+      <div className='app-wrapper'>
+        <TodoCounter />
+        <TodoSearch />
+        <TodoList>
+          <div className='info-text'>
+            {error && <p>Something went wrong, try reloading the page...</p>}
+            {loading && <Loader/>}
+            {(!loading && !searchedTasks.length) && <p>It seems to be that there ain't no tasks assigned, why don't you add some tasks 😉?</p>}
+          </div>
+          {searchedTasks.map((task) => (
+            <TodoItem
+              key={task.text}
+              text={task.text}
+              completed={task.completed}
+              onComplete={() => toggleCompleteTask(task.text)}
+              onDelete={() => deleteTask(task.text)}
+            />
+          ))}
+        </TodoList>
 
-      {openModal && (
-        <Modal>
-          <TodoForm/>
-        </Modal>
-      )}
-      <CreateTodoButton 
-        setOpenModal={setOpenModal}
-        openModal={openModal}
-      />
+        {openModal && (
+          <Modal>
+            <TodoForm/>
+          </Modal>
+        )}
+        <CreateTodoButton 
+          setOpenModal={setOpenModal}
+          openModal={openModal}
+        />
+      </div>
     </div>
   );
 }

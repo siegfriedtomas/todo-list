@@ -7,9 +7,9 @@ function TodoCounter() {
   
   return (
     <h2 className="todo-counter">
-      { totalTasks != 0 
+      { totalTasks !== 0 
           ? <>
-              { totalTasks == completedTasks 
+              { totalTasks === completedTasks 
                 ? <span> 🎉 You completed every task ({completedTasks} of {totalTasks}) 🎉 </span>
                 : <span> You have completed {completedTasks} of {totalTasks} tasks so far 🥳 </span>
               }

@@ -3,7 +3,8 @@ import { TodoContext } from '../App/TodoContext';
 import '../Styles/Components/TodoForm.css';
 
 function TodoForm() {
-    const [newTaskValue, setNewTodoValue] = React.useState('');
+    const [taskTitle, setTaskTitle] = React.useState('');
+    const [taskDescription, setTaskDescription] = React.useState('');
 
     const {
         addTask,
@@ -14,22 +15,31 @@ function TodoForm() {
         setOpenModal(false);
     };
 
-    const onChange = (event) => {
-        setNewTodoValue(event.target.value);
-    }
-
     const onSubmit = (event) => {
         event.preventDefault();
-        addTask(newTaskValue);
+        addTask(taskTitle, taskDescription);
         setOpenModal(false);
     };
 
     return (
         <form onSubmit={onSubmit}>
-            <label>Add New Task</label>
-            <textarea 
-                value={newTaskValue}
-                onChange={onChange}
+            <label>Add a New Task</label>
+            <label htmlFor="title-field">Task title</label>
+            <textarea
+                id='title-field'
+                className='title-field'
+                placeholder='Title'
+                value={taskTitle}
+                onChange={(event) => setTaskTitle(event.target.value)}
+                required
+            />
+            <label htmlFor="description-field">Task description</label>
+            <textarea
+                id="description-field"
+                className='description-field'
+                placeholder='Short description'
+                value={taskDescription}
+                onChange={(event) => setTaskDescription(event.target.value)}
             />
             <div className="modal-buttons-container">
                 <button className="modal-button button-cancel" type="button" onClick={onCancel} >Cancel</button>

@@ -22,30 +22,31 @@ function TodoProvider(props) {
     searchedTasks = userTasks;
   } else {
     searchedTasks = userTasks.filter((task) => {
-      const taskText = task.text.toLowerCase();
+      const taskTitle = task.title.toLowerCase();
       const searchText = searchInput.toLowerCase();
-      return taskText.includes(searchText);
+      return taskTitle.includes(searchText);
     });
   }
 
-  const addTask = (text) => {
+  const addTask = (title, description) => {
     const newTasks = [...userTasks];
     newTasks.push({
       completed: false,
-      text,
+      title,
+      description
     });
     saveTasks(newTasks);
   };
 
-  const toggleCompleteTask = (text) => {
-    const taskIndex = userTasks.findIndex((task) => task.text === text);
+  const toggleCompleteTask = (title) => {
+    const taskIndex = userTasks.findIndex((task) => task.title === title);
     const newTasks = [...userTasks];
     newTasks[taskIndex].completed = !newTasks[taskIndex].completed;
     saveTasks(newTasks);
   };
 
-  const deleteTask = (text) => {
-    const taskIndex = userTasks.findIndex((task) => task.text === text);
+  const deleteTask = (title) => {
+    const taskIndex = userTasks.findIndex((task) => task.title === title);
     const newTasks = [...userTasks];
     newTasks.splice(taskIndex, 1);
     saveTasks(newTasks);

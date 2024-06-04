@@ -31,15 +31,15 @@ function AppUI() {
           <div className='info-text'>
             {error && <p>Something went wrong, try reloading the page...</p>}
             {loading && <Loader/>}
-            {(!loading && !searchedTasks.length) && <p>It seems to be that there ain't no tasks assigned, why don't you add some tasks 😉?</p>}
+            {(!loading && !searchedTasks.length) && <p>No tasks to show, why don't you add some? 😉</p>}
           </div>
-          {searchedTasks.map((task) => (
+          {searchedTasks.map((task, idx) => (
             <TodoItem
-              key={task.text}
-              text={task.text}
+              key={`task-${idx}`}
+              task={task}
               completed={task.completed}
-              onComplete={() => toggleCompleteTask(task.text)}
-              onDelete={() => deleteTask(task.text)}
+              onComplete={() => toggleCompleteTask(task.title)}
+              onDelete={() => deleteTask(task.title)}
             />
           ))}
         </TodoList>

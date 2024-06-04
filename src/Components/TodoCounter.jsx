@@ -10,11 +10,11 @@ function TodoCounter() {
       { totalTasks !== 0 
           ? <>
               { totalTasks === completedTasks 
-                ? <span> 🎉 You completed every task ({completedTasks} of {totalTasks}) 🎉 </span>
-                : <span> You have completed {completedTasks} of {totalTasks} tasks so far 🥳 </span>
+                ? <span> 🎉 You completed every task 🎉 </span>
+                : <span> You have completed {completedTasks} of {totalTasks} tasks </span>
               }
             </>
-          : <span> There aren't any task to be completed 😕 </span>
+          : <span> No tasks assigned </span>
       }
     </h2>
   );

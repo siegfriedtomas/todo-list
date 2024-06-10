@@ -1,23 +1,22 @@
-.TodoSearch {
+.todo-search {
     background:#f9fbfc;
     border-radius: 1rem;
-    border: 0.1rem solid #202329;
     margin: 1rem 0;
-    height: 6.4rem;
+    border: none;
     width: 100%;
-    font-size: 2.4rem;
-    text-align:center;
+    font-size: 2rem;
+    padding: 1rem 1.5rem;
     font-weight:400;
     color:#1e1e1f;
-    box-shadow:0 0.5rem 5rem rgba(32,35,41,.25);
+    box-shadow:0 1px 1rem rgba(32,35,41,.25);
     box-sizing:border-box;
 }
 
-.TodoSearch::placeholder {
+.todo-search::placeholder {
     color:#a5a5a5;
     font-weight:400;
 }
 
-.TodoSearch:focus-visible {
+.todo-search:focus-visible {
     outline-width: 0;
 }

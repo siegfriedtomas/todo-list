@@ -1,0 +1,21 @@
+.create-task-button {
+    background-color: #4B56D2;
+    border-radius: 1rem;
+    cursor:pointer;
+    font-weight:700;
+    font-size: 2rem;
+    color:#fafafa;
+    display:flex;
+    border: none;
+    padding: 1rem;
+    justify-content:center;
+    align-items:center;
+    transition:.3s ease;
+    z-index: 5;
+    flex-shrink: 0;
+    box-shadow:0 1px 1rem rgba(32,35,41,.25);
+}
+
+
+/* // F1F6F5 */
+/* 4B56D2 */

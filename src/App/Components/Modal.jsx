@@ -1,6 +1,6 @@
 import React from 'react';
 import { createPortal } from 'react-dom';
-import '../Styles/Components/Modal.css'
+import '../../resources/styles/components/Modal.css'
 
 function Modal({children}) {
     return createPortal(

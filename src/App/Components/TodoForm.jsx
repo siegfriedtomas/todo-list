@@ -1,6 +1,6 @@
 import React from 'react';
-import { TodoContext } from '../App/TodoContext';
-import '../Styles/Components/TodoForm.css';
+import { TodoContext } from '../TodoContext';
+import '../../resources/styles/components/TodoForm.css';
 
 function TodoForm() {
     const [taskTitle, setTaskTitle] = React.useState('');
@@ -22,15 +22,15 @@ function TodoForm() {
     };
 
     return (
-        <form onSubmit={onSubmit}>
-            <label>Add a New Task</label>
-            <label htmlFor="title-field">Task title</label>
+        <form className='new-task-form' onSubmit={onSubmit}>
+            <label className='field-label' htmlFor="title-field">New task title</label>
             <textarea
                 id='title-field'
                 className='title-field'
                 placeholder='Title'
                 value={taskTitle}
                 onChange={(event) => setTaskTitle(event.target.value)}
+                rows={1}
                 required
             />
             <label htmlFor="description-field">Task description</label>
@@ -40,6 +40,7 @@ function TodoForm() {
                 placeholder='Short description'
                 value={taskDescription}
                 onChange={(event) => setTaskDescription(event.target.value)}
+                rows={3}
             />
             <div className="modal-buttons-container">
                 <button className="modal-button button-cancel" type="button" onClick={onCancel} >Cancel</button>
